@@ -7,7 +7,11 @@
 <div class="max-w-6xl mx-auto flex flex-wrap py-6 px-6 xl:px-0">
 
     <div class="images w-full mb-6 lg:mb-0 lg:w-3/5">
-        <img src="" alt="" class="rounded-xl">
+        <img 
+            src="{% if produto.image %}{{ produto.image.url }}{% else %}https://via.placeholder.com/240x240{% endif %}" 
+            alt="" 
+            class="rounded-xl"
+            >
     </div>
 
     <div class="information w-full lg:w-2/5 lg:p-6">
@@ -17,11 +21,12 @@
 
         <p class="mt-6 text-gray-700">{{ produto.descricao }}</p>
 
-        <a href="#" 
-        class="mt-6 inline-block px-8 py-4 rounded-xl bg-purple-600 text-white hover:bg-purple-700"
-        hx-get="{% url 'add_carrinho' produto.id %}"
-        hx-target="#menu-cart-button"
-        hx-swap="outerHTML"
+        <a 
+            href="#" 
+            class="mt-6 inline-block px-8 py-4 rounded-xl bg-purple-600 text-white hover:bg-purple-700"
+            hx-get="{% url 'add_carrinho' produto.id %}"
+            hx-target="#menu-cart-button"
+            hx-swap="outerHTML"
         >
             Adicionar ao carrinho
         </a>
