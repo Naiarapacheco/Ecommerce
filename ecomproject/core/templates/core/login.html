@@ -10,22 +10,41 @@
 
         <form method="post" action="." class="space-y-3">
 
+            {% csrf_token %}
+
             <div>
-                <label for="email">E-mail</label>
-                <input type="email" class="w-full mt-2 py-4 px-6 bg-white rounded-xl">
+                <label for="email">Usuário</label>
+                <input type="text" name="username" class="w-full mt-2 py-4 px-6 bg-white rounded-xl">
             </div>
 
             <div>
                 <label for="password">Senha</label>
-                <input type="password" class="w-full mt-2 py-4 px-6 bg-white rounded-xl">
+                <input type="password" name ="password" class="w-full mt-2 py-4 px-6 bg-white rounded-xl">
             </div>
 
-            <div class="p-6 bg-red-200 text-red-800 rounded-xl">
-                <p>This is an error!</p>
-            </div>
-            
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="p-6 bg-red-200 text-red-800 rounded-xl">
+                            <p>{{ error|escape }}</p>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+                {% for erros in form.non_field_errors %}
+                    <div class="p-6 bg-red-200 text-red-800 rounded-xl">
+                        <p>Erro! tente novamente </p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+                
+            <p>Não tem uma conta? <a href="/cadastro/" 
+                class="text-blue-700 hover:text-blue-500">
+                Criar conta</a>
+            </p>
+
             <div>
-                <button class="py-4 px-6 rounded-xl text-white bg-purple-500 hover:bg-purple-600">Salvar</button>
+                <button class="py-4 px-6 rounded-xl text-white bg-purple-500 hover:bg-purple-600">Entrar</button>
             </div>
 
         </form>
