@@ -34,7 +34,7 @@ class Carrinho(object):
 
         #not in the cart yet
         if produto_id not in self.cart:
-            self.cart[produto_id] = {'quantidade':1, 'id': produto_id}
+            self.cart[produto_id] = {'quantidade':0, 'id': produto_id}
 
         #we want increment or decrement the number of quantities in the cart
         if update_quantidade:

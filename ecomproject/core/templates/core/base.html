@@ -8,11 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="flex flex-col min-h-screen">
     <nav class="border-b border-gray-300">
         <div class="max-w-6xl mx-auto py-2 px-6 xl:px-0 items-center flex justify-between">
             <div class="menu-left flex items-center space-x-6">
-                <a href="/" class="py-4 text-lg text-purple-600 font-semibold">YoHouse</a>
+                <a href="{% url 'principal' %}" class="py-4 text-lg text-purple-600 font-semibold">YoHouse</a>
                 <ul class="flex items-center space-x-4">
                     <li><a href="{% url 'moveis' %}">Móveis</a></li>
                 </ul>
@@ -21,14 +21,14 @@
             <div class="menu-right flex items-center space-x-4">
 
                 {% if request.user.is_authenticated %}
-                    <a href="/logout/">
+                    <a href="{% url 'logout' %}">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
                         </svg>                                          
                     </a> 
 
                  {% else %}
-                    <a href="/login/">
+                    <a href="{% url 'login' %}">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -37,13 +37,13 @@
                     </a>
                 {% endif %}
 
-                {% include 'includes/menu_carrinho.html' %}
+                {% include 'includes/add_carrinho.html' %}
 
             </div>
         </div>
     </nav>
 
-    <main>
+    <main class="flex-1">
         {% block content %}
         {% endblock %}
     </main>

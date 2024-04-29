@@ -19,7 +19,7 @@
 
         <a href="#" 
         class="mt-6 inline-block px-8 py-4 rounded-xl bg-purple-600 text-white hover:bg-purple-700"
-        hx-get="{% url 'menu_carrinho' produto.id %}"
+        hx-get="{% url 'add_carrinho' produto.id %}"
         hx-target="#menu-cart-button"
         hx-swap="outerHTML"
         >
