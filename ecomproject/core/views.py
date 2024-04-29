@@ -11,6 +11,14 @@ def principal(request):
     return render(request, 'core/principal.html', {'produtos':produtos})
 
 
+def cadastro(request):
+    return render(request, 'core/cadastro.html')
+
+
+def login(request):
+    return render(request, 'core/login.html')
+
+
 def moveis(request):
     categorias = Categoria.objects.all()
     produtos = Produto.objects.all() 

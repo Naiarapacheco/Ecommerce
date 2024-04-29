@@ -1,5 +1,8 @@
 from django.db import models
+from django.core.files import File
 
+from io import BytesIO
+from PIL import Image 
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=255)
@@ -18,6 +21,8 @@ class Produto(models.Model):
     descricao = models.TextField(blank=True, null=True) #not obligatory
     preco = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True) #automatic
+    image = models.ImageField(upload_to='uploads/', blank=True, null=True) #blank -> not obligated
+    thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
 
     class Meta:
         ordering = ('-created_at',)
@@ -28,3 +33,23 @@ class Produto(models.Model):
     def get_preco_formatado(self):
         return f'R${self.preco:.2f}'
     
+    #functionality to get the thumbnail
+    def get_thumbnail(self):
+        if self.thumbnail:
+            return self.thumbnail.url
+        else:
+            return 'https://via.placeholder.com/240x240'
+
+     #if there are image but NO thumbnail        
+    def make_thumbnail(self, image, size=(300, 300)):
+        img = Image.open(image)
+        img.convert('RGB')
+        img.thumbnail(size) #generate automatically 
+
+        #save to the server
+        thumb_io = BytesIO() 
+        img.save(thumb_io, 'JPEG', quality=85) #default quality '85'
+
+        thumbnail = File(thumb_io, name=image.name) 
+
+        return thumbnail 
