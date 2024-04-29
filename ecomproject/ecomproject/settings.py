@@ -11,6 +11,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SESSION_COOKIE_AGE = 86400 #how long the objects will be put in the cart before they are automatically removed.
+CART_SESSION_ID = 'carrinho' #it's a way to separate this session id from other sessions if you're gonna use that.
 
 # Application definition
 INSTALLED_APPS = [
@@ -20,7 +22,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core'
+    'carrinho',
+    'core',
+    'produtos',
 ]
 
 MIDDLEWARE = [
@@ -46,6 +50,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'carrinho.context_processors.carrinho', 
             ],
         },
     },
