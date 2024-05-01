@@ -7,26 +7,28 @@
 <div class="max-w-6xl mx-auto py-6">
     <h1 class="mb-3 text-3xl"> Editar Minha conta</h1>
 
-    <form action="post" action="." class="space-y-3">
+    <form method="post" action="." class="space-y-3">
+
+        {% csrf_token %}
 
         <div>
             <label for="">Primeiro Nome: </label>
-            <input type="name" name="first_name" value="{{ request.user.first_name }}" type="text" class="w-full mt-1 py-3 px-6 bg-gray-100 rounded">
+            <input name="first_name" value="{{ request.user.first_name }}" class="w-full mt-1 py-3 px-6 bg-gray-100 rounded">
         </div>
 
         <div>
             <label for="">Sobrenome: </label>
-            <input type="name" name="last_name" value="{{ request.user.last_name }}" type="text" class="w-full mt-1 py-3 px-6 bg-gray-100 rounded">
+            <input name="last_name" value="{{ request.user.last_name }}" class="w-full mt-1 py-3 px-6 bg-gray-100 rounded">
         </div>
 
         <div>
             <label for="">Usuário: </label>
-            <input type="name" name="username" value="{{ request.user.username }}" type="text" class="w-full mt-1 py-3 px-6 bg-gray-100 rounded">
+            <input name="username" value="{{ request.user.username }}" class="w-full mt-1 py-3 px-6 bg-gray-100 rounded">
         </div>
 
         <div>
             <label for="">Email: </label>
-            <input type="name" name="email" value="{{ request.user.email }}" type="text" class="w-full mt-1 py-3 px-6 bg-gray-100 rounded">
+            <input name="email" value="{{ request.user.email }}" class="w-full mt-1 py-3 px-6 bg-gray-100 rounded">
         </div>
 
         <div>

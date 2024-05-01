@@ -43,6 +43,15 @@ def minhaconta(request):
 
 @login_required
 def editar_minhaconta(request):
+    if request.method == 'POST':
+        user = request.user
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.email = request.POST.get('email')
+        user.username = request.POST.get('username')
+        user.save()
+
+        return redirect('minhaconta')
     return render(request, 'core/editar_minhaconta.html')
 
 #Movéis
