@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 
 
 class CadastroForm(UserCreationForm):
-    primeiro_nome = forms.CharField(max_length=50, required=True)
-    sobrenome = forms.CharField(max_length=50, required=True)
+    first_name = forms.CharField(max_length=50, required=True)
+    last_name = forms.CharField(max_length=50, required=True)
     email = forms.CharField(max_length=255, required=True)
 
     class Meta:
         model = User
-        fields = ['username', 'primeiro_nome', 'sobrenome', 'email', 'password1', 'password2',]
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2',]

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
 from django.db.models import Q
 
@@ -9,7 +10,6 @@ from .forms import CadastroForm
 #Home
 def principal(request):
     produtos = Produto.objects.all()[0:8] #basicly it's gonna show only '8' getting from the database.
-
     return render(request, 'core/principal.html', {'produtos':produtos})
 
 # Cadastro
@@ -22,7 +22,7 @@ def cadastro(request):
 
             login(request, usuario)
 
-            return redirect('/')
+            return redirect('/login/')
     else:
         form = CadastroForm()
 
@@ -35,6 +35,10 @@ def custom_logout(request):
     logout(request)
 
     return redirect('/')
+
+@login_required
+def minhaconta(request):
+    return render(request, 'core/minhaconta.html')
 
 #Movéis
 def moveis(request):

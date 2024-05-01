@@ -13,6 +13,7 @@ ALLOWED_HOSTS = []
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
 
 SESSION_COOKIE_AGE = 86400 #how long the objects will be put in the cart before they are automatically removed.
 CART_SESSION_ID = 'carrinho' #it's a way to separate this session id from other sessions if you're gonna use that.

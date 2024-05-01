@@ -38,7 +38,7 @@ class Produto(models.Model):
         if self.thumbnail:
             return self.thumbnail.url
         else:
-            return 'https://via.placeholder.com/240x240'
+            return 'https://via.placeholder.com/240x240'     
 
      #if there are image but NO thumbnail        
     def make_thumbnail(self, image, size=(300, 300)):
