@@ -36,9 +36,14 @@ def custom_logout(request):
 
     return redirect('/')
 
+#Minha conta
 @login_required
 def minhaconta(request):
     return render(request, 'core/minhaconta.html')
+
+@login_required
+def editar_minhaconta(request):
+    return render(request, 'core/editar_minhaconta.html')
 
 #Movéis
 def moveis(request):
